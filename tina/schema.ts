@@ -1,6 +1,6 @@
 import type { Schema } from "tinacms";
 
-const basePath = (process.env.TINA_BASE_PATH || "").replace(/^\/+/, "");
+const basePath = (process.env.TINA_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
 
 export default {
   collections: [
@@ -10,8 +10,9 @@ export default {
       path: "content/blog",
       format: "md",
       ui: {
-        router(props) {
-          return `${basePath}/blog/${props.document._sys.filename}`;
+        router: (props) => {
+          const path = `${basePath}/blog/${props.document._sys.filename}`;
+          return path;
         },
         filename: {
           readonly: true,
