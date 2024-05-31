@@ -9,7 +9,7 @@ const branch =
   "main";
 const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 const token = process.env.TINA_CONTENT_TOKEN;
-const basePath = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
+const basePath = (process.env.TINA_BASE_PATH || "").replace(/^\/+/, "");
 
 export default defineConfig({
   branch,

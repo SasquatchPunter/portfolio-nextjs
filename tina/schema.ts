@@ -1,6 +1,6 @@
 import type { Schema } from "tinacms";
 
-const basePath = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
+const basePath = (process.env.TINA_BASE_PATH || "").replace(/^\/+/, "");
 
 export default {
   collections: [
