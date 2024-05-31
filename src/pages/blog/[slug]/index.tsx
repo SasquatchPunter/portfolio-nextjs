@@ -1,3 +1,4 @@
+import BlogPost from "@/components/blog/BlogPost";
 import client from "@tina/__generated__/client";
 import { InferGetStaticPropsType } from "next";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -68,7 +69,7 @@ export default function BlogPostPage({
       <h1 className="text-4xl">Blog Post Page</h1>
 
       <div className="text-red-400">
-        <p>Errors Found</p>
+        <p>Errors Found:</p>
         {errors.map((error) => (
           <p>{error.message}</p>
         ))}
@@ -76,9 +77,7 @@ export default function BlogPostPage({
     </>
   ) : (
     <>
-      <h1 className="text-4xl">Blog Post Page</h1>
-      <h3>{post.data.blog.title}</h3>
-      <TinaMarkdown content={post.data.blog.body} />
+      <BlogPost post={post} />
     </>
   );
 }
