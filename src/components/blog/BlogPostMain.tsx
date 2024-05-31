@@ -1,6 +1,5 @@
 import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import components from "./markdown";
-
 interface Props {
   body: TinaMarkdownContent;
 }
