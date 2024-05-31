@@ -5,7 +5,7 @@ interface Props {
 }
 export default function BlogPostMain({ body }: Props) {
   return (
-    <main>
+    <main className="m-8 flex flex-col gap-4">
       <TinaMarkdown content={body} components={components} />
     </main>
   );
