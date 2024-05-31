@@ -16,7 +16,7 @@ export default function BlogPost({ post }: Props) {
   });
   return (
     <article>
-      <BlogPostHeader title={data.blog.title} />
+      <BlogPostHeader title={data.blog.title} tags={data.blog.tags} />
       <BlogPostMain body={data.blog.body} />
       <BlogPostFooter />
     </article>
