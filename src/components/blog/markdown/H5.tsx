@@ -1,3 +1,3 @@
 export default function H5(props: any) {
-  return <h5>{props.children}</h5>;
+  return <h5 className="text-2xl">{props.children}</h5>;
 }
