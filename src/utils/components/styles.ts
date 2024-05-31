@@ -14,7 +14,7 @@ export function join(
 }
 
 function parseStyleString(styles: string) {
-  const out = {};
+  const out: { [key: string]: string } = {};
   styles
     .split(";")
     .filter((style) => style)
