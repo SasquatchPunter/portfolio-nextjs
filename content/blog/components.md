@@ -24,3 +24,36 @@ You can write normal text.
 *Or italicized*.
 
 ***OR BOTH***!
+
+```javascript
+const string = 'You can embed code blocks!'
+console.log(string)
+```
+
+```java
+class Message {
+  private String message;
+  public Message(String message) {
+    this.message = message
+    this.printMessage();
+  }
+  private printMessage() {
+    String.out.println(this.message)
+  }
+}
+
+Message m = new Message('Like this!')
+
+```
+
+Or you can inline them!
+
+* You
+* Can
+* Also
+* Have
+* Lists
+
+1. Numbered
+2. Ones
+3. Too
