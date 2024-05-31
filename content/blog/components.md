@@ -16,3 +16,11 @@ date: 2024-05-31T04:52:15.929Z
 ##### Header 5
 
 ###### Header 6
+
+You can write normal text.
+
+**Or bolded**.
+
+*Or italicized*.
+
+***OR BOTH***!
