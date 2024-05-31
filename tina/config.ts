@@ -7,7 +7,8 @@ const branch =
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
-const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const clientId =
+  process.env.NEXT_PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID;
 const token = process.env.TINA_CONTENT_TOKEN;
 const basePath = (process.env.TINA_BASE_PATH || "").replace(/^\/+/, "");
 
