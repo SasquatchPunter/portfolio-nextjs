@@ -25,6 +25,10 @@ You can write normal text.
 
 ***OR BOTH***!
 
+> You could have a blockquote.
+
+You can also write code:
+
 ```javascript
 const string = 'You can embed code blocks!'
 console.log(string)
@@ -44,7 +48,7 @@ class Message {
 Message m = new Message('Like this!')
 ```
 
-Or you can inline them!
+Or you can `<span>inline</span>` it!
 
 * You
 * Can
