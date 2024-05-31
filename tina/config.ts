@@ -1,5 +1,7 @@
 import { defineConfig } from "tinacms";
 
+import schema from "./schema";
+
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -7,6 +9,7 @@ const branch =
   "main";
 const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 const token = process.env.TINA_CONTENT_TOKEN;
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
 
 export default defineConfig({
   branch,
@@ -15,6 +18,7 @@ export default defineConfig({
   build: {
     outputFolder: "admin",
     publicFolder: "public",
+    basePath,
   },
   media: {
     tina: {
@@ -22,32 +26,5 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
-  schema: {
-    collections: [
-      {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
-        ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-        },
-      },
-    ],
-  },
+  schema,
 });
