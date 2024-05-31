@@ -4,6 +4,7 @@ const basePath = process.env.NEXT_BASE_PATH;
 const nextConfig = {
   reactStrictMode: true,
   basePath,
+  output: "export",
 };
 
 export default nextConfig;
