@@ -5,6 +5,7 @@ import H3 from "./H3";
 import H4 from "./H4";
 import H5 from "./H5";
 import H6 from "./H6";
+import P from "./P";
 
 export default {
   h1: H1,
@@ -13,4 +14,5 @@ export default {
   h4: H4,
   h5: H5,
   h6: H6,
+  p: P,
 } as Components<{}>;
