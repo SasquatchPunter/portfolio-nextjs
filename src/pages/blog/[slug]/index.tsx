@@ -71,7 +71,7 @@ export default function BlogPostPage({
       <div className="text-red-400">
         <p>Errors Found:</p>
         {errors.map((error) => (
-          <p>{error.message}</p>
+          <p key={error.message}>{error.message}</p>
         ))}
       </div>
     </>

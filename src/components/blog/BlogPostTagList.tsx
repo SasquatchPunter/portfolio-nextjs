@@ -7,7 +7,7 @@ export default function BlogPostTagList({ tags }: Props) {
   return (
     <ul>
       {tags?.map((tag) => (
-        <li>{tag}</li>
+        <li key={tag}>{tag}</li>
       ))}
     </ul>
   );
