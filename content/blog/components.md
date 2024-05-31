@@ -41,9 +41,7 @@ class Message {
     String.out.println(this.message)
   }
 }
-
 Message m = new Message('Like this!')
-
 ```
 
 Or you can inline them!
