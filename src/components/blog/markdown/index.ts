@@ -12,7 +12,7 @@ import H6 from "./H6";
 import P from "./P";
 
 export default {
-  block_quote: BlockQuote,
+  blockquote: BlockQuote,
   code: Code,
   code_block: CodeBlock,
   h1: H1,
