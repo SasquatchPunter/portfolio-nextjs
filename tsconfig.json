@@ -15,7 +15,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@tina/*": ["./tina/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@icons/*": ["./src/icons/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
