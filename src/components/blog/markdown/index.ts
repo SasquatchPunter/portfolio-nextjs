@@ -1,5 +1,6 @@
 import { Components } from "tinacms/dist/rich-text";
 
+import A from "./A";
 import BlockQuote from "./BlockQuote";
 import Code from "./Code";
 import CodeBlock from "./CodeBlock";
@@ -15,6 +16,7 @@ import OL from "./OL";
 import LI from "./LI";
 
 export default {
+  a: A,
   blockquote: BlockQuote,
   code: Code,
   code_block: CodeBlock,
