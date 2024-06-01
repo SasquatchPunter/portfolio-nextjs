@@ -8,8 +8,9 @@ export default function Img(props: any) {
   // NOTE: Img tags in Markdown are normally nested in `<p>` tags by parsers
   // Using block elements like `<div>` may break this.
   return (
-    <span className="overflow-hidden rounded-xl max-w-screen max-h-screen relative">
-      <img src={url} className="w-full" />
+    <span className="max-w-screen max-h-screen relative">
+      <img src={url} className="w-full rounded-xl object-contain" />
+      <label>{props.caption}</label>
     </span>
   );
 }
