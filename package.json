@@ -16,6 +16,7 @@
     "tinacms": "^1.6.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tinacms/cli": "^1.5.45",
     "@types/node": "^20.12.13",
     "@types/react": "^18",
