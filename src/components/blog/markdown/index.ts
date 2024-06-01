@@ -10,6 +10,9 @@ import H4 from "./H4";
 import H5 from "./H5";
 import H6 from "./H6";
 import P from "./P";
+import UL from "./UL";
+import OL from "./OL";
+import LI from "./LI";
 
 export default {
   blockquote: BlockQuote,
@@ -22,4 +25,7 @@ export default {
   h5: H5,
   h6: H6,
   p: P,
+  ul: UL,
+  ol: OL,
+  li: LI,
 } as Components<{}>;
