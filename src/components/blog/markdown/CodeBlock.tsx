@@ -51,6 +51,7 @@ function TopBar({ lang, copyText }: TopBarProps) {
       <button
         className="w-6 h-auto"
         onClick={() => navigator.clipboard.writeText(copyText)}
+        title="Copy Code"
       >
         <CopyIcon />
       </button>
