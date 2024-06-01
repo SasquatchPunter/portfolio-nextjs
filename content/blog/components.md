@@ -67,3 +67,5 @@ Or you can `<span>inline</span>` it!
 1. Numbered
 2. Ones
 3. Too
+
+![](/uploads/modern-futuristic-sci-fi-background.avif)
