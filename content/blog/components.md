@@ -48,6 +48,12 @@ class Message {
 Message m = new Message('Like this!')
 ```
 
+```typescript
+function mapAray(input: Array<string>) {
+  return input.map(in => in.trim())
+}
+```
+
 Or you can `<span>inline</span>` it!
 
 * You
