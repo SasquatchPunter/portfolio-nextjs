@@ -10,6 +10,7 @@ import H3 from "./H3";
 import H4 from "./H4";
 import H5 from "./H5";
 import H6 from "./H6";
+import Img from "./Img";
 import P from "./P";
 import UL from "./UL";
 import OL from "./OL";
@@ -26,6 +27,7 @@ export default {
   h4: H4,
   h5: H5,
   h6: H6,
+  img: Img,
   p: P,
   ul: UL,
   ol: OL,
