@@ -27,6 +27,8 @@ You can write normal text.
 
 > You could have a blockquote.
 
+You can also inline [links](https://google.com "Google")!
+
 You can also write code:
 
 ```javascript
@@ -50,7 +52,7 @@ Message m = new Message('Like this!')
 
 ```typescript
 function mapAray(input: Array<string>) {
-  return input.map(in => in.trim())
+  return input.map(i => i.trim())
 }
 ```
 
