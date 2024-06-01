@@ -47,9 +47,9 @@ interface TopBarProps {
 function TopBar({ lang, copyText }: TopBarProps) {
   return (
     <div className="flex justify-between py-2 px-4 bg-gray-600">
-      <span>{lang}</span>
+      <span className="h-min inline-block self-center">{lang}</span>
       <button
-        className="w-6 h-auto"
+        className="w-5 h-auto self-center"
         onClick={() => navigator.clipboard.writeText(copyText)}
         title="Copy Code"
       >
