@@ -16,7 +16,7 @@ interface Props {
 }
 export default function BlogPostTagList({ tags }: Props) {
   return (
-    <ul className="w-full my-4 justify-center flex gap-1 flex-wrap">
+    <ul className="w-full m-4 justify-start flex gap-3 flex-wrap">
       {tags?.map((tag) =>
         tag !== null ? <BlogPostTag key={tag} tag={tag} /> : undefined
       )}
