@@ -8,7 +8,7 @@ export default {
       name: "blog",
       label: "Blog Post",
       path: "content/blog",
-      format: "md",
+      format: "mdx",
       ui: {
         router: (props) => {
           const path = `${basePath}/blog/${props.document._sys.filename}`;
@@ -42,6 +42,11 @@ export default {
           },
         },
         {
+          type: "boolean",
+          name: "draft",
+          label: "Draft",
+        },
+        {
           type: "string",
           name: "tags",
           label: "Tags",
@@ -59,11 +64,6 @@ export default {
           name: "date",
           label: "Publish Date",
           required: true,
-          ui: {
-            format() {
-              return Date.now();
-            },
-          },
         },
         {
           type: "rich-text",
