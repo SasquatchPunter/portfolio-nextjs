@@ -9,13 +9,16 @@ const branch =
   "main";
 const clientId =
   process.env.NEXT_PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID;
-const token = process.env.TINA_CONTENT_TOKEN;
+
+const clientToken = process.env.TINA_CONTENT_TOKEN;
+const searchToken = process.env.TINA_SEARCH_TOKEN;
+
 const basePath = (process.env.TINA_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
 
 export default defineConfig({
   branch,
   clientId,
-  token,
+  token: clientToken,
   build: {
     outputFolder: "admin",
     publicFolder: "public",
@@ -25,6 +28,11 @@ export default defineConfig({
     tina: {
       mediaRoot: "media",
       publicFolder: "public",
+    },
+  },
+  search: {
+    tina: {
+      indexerToken: searchToken,
     },
   },
   schema,

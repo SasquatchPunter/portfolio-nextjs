@@ -42,9 +42,15 @@ export default {
           },
         },
         {
-          type: "boolean",
-          name: "draft",
-          label: "Draft",
+          type: "string",
+          name: "status",
+          label: "Status",
+          description: "Set this post's current editorial status",
+          options: ["draft", "published"],
+          ui: {
+            component: "radio-group",
+            direction: "vertical",
+          },
         },
         {
           type: "string",
@@ -72,6 +78,10 @@ export default {
           isBody: true,
         },
       ],
+      // indexes: [{
+      //   name: 'tags',
+      //   fields: []
+      // }]
     },
   ],
 } as Schema;
