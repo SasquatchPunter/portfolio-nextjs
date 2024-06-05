@@ -13,10 +13,10 @@ export default function Datetime(props: CustomFieldProps) {
   const { value } = props.input;
   return (
     <ReactDatetime
+      inputProps={{ disabled }}
       className={className}
       dateFormat={dateFormat}
       timeFormat={timeFormat}
-      open={disabled === true ? false : undefined}
       {...props.input}
       value={value ? new Date(value) : undefined}
     />
