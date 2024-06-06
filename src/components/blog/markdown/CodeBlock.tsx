@@ -1,6 +1,6 @@
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import * as classes from "@utils/components/classes";
-import * as styles from "@utils/components/styles";
+import * as classes from "@/utils/classes";
+import * as styles from "@/utils/styles";
 
 import javascript from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 import java from "react-syntax-highlighter/dist/esm/languages/hljs/java";
