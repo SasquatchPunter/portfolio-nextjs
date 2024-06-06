@@ -1,8 +1,6 @@
-// import Datetime from "./components/Datetime";
 import type { Schema } from "tinacms";
 import { wrapFieldsWithMeta } from "tinacms";
 import Datetime from "./components/Datetime";
-import React from "react";
 
 const basePath = (process.env.TINA_PUBLIC_BASE_PATH || "").replace(/^\/+/, "");
 
@@ -98,6 +96,17 @@ export default {
             timeFormat: false,
             disabled: true,
           },
+        },
+        {
+          type: "string",
+          name: "brief",
+          label: "Brief",
+          description:
+            "A brief to grab attention and tease the blog post content",
+          ui: {
+            component: "textarea",
+          },
+          required: false,
         },
         {
           type: "rich-text",
