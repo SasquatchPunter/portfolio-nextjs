@@ -1,0 +1,9 @@
+fragment MinBlogParts on Blog {
+  __typename
+  title
+  status
+  tags
+  createdAt
+  updatedAt
+  brief
+}

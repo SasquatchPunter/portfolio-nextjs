@@ -1,0 +1,34 @@
+# Queries the entire collection of published content
+query minBlogConnectionPublished {
+  blogConnection (
+    filter: {status: {eq: "published"}}
+  ) {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+          }
+        }
+        ...MinBlogParts
+      }
+    }
+  }
+}
+
+query minBlogConnectionAll {
+  blogConnection {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+          }
+        }
+        ...MinBlogParts
+      }
+    }
+  }
+}
