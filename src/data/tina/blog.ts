@@ -127,7 +127,6 @@ export class BlogConnection {
     }
   }
   next() {
-    console.log({ pageInfo: this.pageInfo, params: this.params });
     if (this.pageInfo === undefined || this.hasNextPage()) {
       this.cursorNext();
       return blogConnection(this.params).then((val) => {
