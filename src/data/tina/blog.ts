@@ -32,8 +32,6 @@ export interface BlogConnectionParams {
  * Directly queries `blogConnection` and handles pagination logic
  */
 export function blogConnection(params?: BlogConnectionParams) {
-  const defaultLimit = 10;
-
   const filter: BlogConnectionQueryVariables["filter"] = {
     tags: {
       in: params?.filter?.tags,
@@ -55,22 +53,22 @@ export function blogConnection(params?: BlogConnectionParams) {
     params?.sort?.by || "createdAt";
 
   interface PaginateForward {
-    first: number;
+    first?: number;
     after?: PageInfo["endCursor"];
   }
   interface PaginateBackward {
-    last: number;
+    last?: number;
     before?: PageInfo["startCursor"];
   }
 
   const paginate: PaginateForward | PaginateBackward =
     params?.sort?.direction === "asc"
       ? {
-          first: params?.paginate?.limit || defaultLimit,
+          first: params?.paginate?.limit,
           after: params?.paginate?.cursor,
         }
       : {
-          last: params?.paginate?.limit || defaultLimit,
+          last: params?.paginate?.limit,
           before: params?.paginate?.cursor,
         };
 
