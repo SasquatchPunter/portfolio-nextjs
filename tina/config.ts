@@ -1,6 +1,6 @@
 import { defineConfig } from "tinacms";
 
-import schema from "./schema";
+import Blog from "./collections/blog";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -35,5 +35,5 @@ export default defineConfig({
       indexerToken: searchToken,
     },
   },
-  schema,
+  schema: { collections: [Blog] },
 });
