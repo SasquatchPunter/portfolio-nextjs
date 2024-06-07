@@ -1,43 +1,38 @@
-import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
-import { BlogConnection, stringsToBlogConnectionParams } from "@data/tina/blog";
+import {
+  MinBlogConnectionAllQuery,
+  MinBlogConnectionPublishedQuery,
+} from "@tina/__generated__/types";
 
-interface Props {}
-export default function BlogList({}: Props) {
-  const { query, isReady } = useRouter();
-  const [posts, setPosts] = useState<any>([]);
-
-  const connection = useMemo(() => {
-    return new BlogConnection(stringsToBlogConnectionParams(query));
-  }, [query]);
-
-  async function loadNextPage() {
-    if (isReady) {
-      const fetchedPosts = await connection.next();
-      const mappedPosts =
-        fetchedPosts?.data.blogConnection.edges
-          ?.filter((edge) => !!edge)
-          .map((edge) => ({ ...edge?.node, cursor: edge?.cursor })) || [];
-      setPosts([...posts, ...mappedPosts]);
-    }
-  }
-
-  useEffect(() => {
-    loadNextPage();
-  }, [query]);
-
+interface BlogListItemProps {
+  post: NonNullable<NonNullable<Props["posts"]>[number]>;
+}
+function BlogListItem({ post }: BlogListItemProps) {
   return (
-    <>
-      {posts.map((post: any) => (
-        <p className="m-auto w-max" key={post._sys.filename}>
-          {post.title}
-        </p>
-      ))}
-      {connection.hasNextPage() ? (
-        <button className="block m-auto w-max" onClick={loadNextPage}>
-          Load More
-        </button>
-      ) : undefined}
-    </>
+    <article className="border border-gray-700">
+      <header>
+        <h1>{post.node!.title}</h1>
+      </header>
+    </article>
+  );
+}
+
+interface Props {
+  posts:
+    | (
+        | MinBlogConnectionAllQuery
+        | MinBlogConnectionPublishedQuery
+      )["blogConnection"]["edges"]
+    | [];
+}
+export default function BlogList({ posts }: Props) {
+  return (
+    <section className="m-4 flex flex-wrap gap-4">
+      {posts?.map((post) => {
+        if (!post || !post.node) {
+          return undefined;
+        }
+        return <BlogListItem post={post} />;
+      })}
+    </section>
   );
 }
