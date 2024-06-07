@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 interface BlogPostTagProps {
   tag: string;
 }
