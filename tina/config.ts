@@ -29,6 +29,9 @@ export default defineConfig({
       mediaRoot: "media",
       publicFolder: "public",
     },
+    // loadCustomStore: async () => {
+    //   return MediaStore;
+    // },
   },
   search: {
     tina: {

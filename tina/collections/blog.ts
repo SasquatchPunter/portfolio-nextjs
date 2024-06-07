@@ -40,7 +40,7 @@ const Blog: Collection = {
       isTitle: true,
       ui: {
         validate(value: string) {
-          if (value === undefined || value.length === 0) {
+          if (value && value.trim().length === 0) {
             return "Title is required!";
           }
         },
@@ -75,7 +75,7 @@ const Blog: Collection = {
       type: "datetime",
       name: "createdAt",
       label: "Created At",
-      required: false,
+      required: true,
       ui: {
         //@ts-expect-error
         component: wrapFieldsWithMeta(Datetime),
@@ -89,7 +89,7 @@ const Blog: Collection = {
       type: "datetime",
       name: "updatedAt",
       label: "Updated At",
-      required: false,
+      required: true,
       ui: {
         //@ts-expect-error
         component: wrapFieldsWithMeta(Datetime),
@@ -98,6 +98,17 @@ const Blog: Collection = {
         timeFormat: false,
         disabled: true,
       },
+    },
+    {
+      type: "object",
+      name: "heroImage",
+      label: "Hero Image",
+      required: false,
+      fields: [
+        { type: "image", name: "image", label: "Image", required: false },
+        { type: "string", name: "alt", label: "Alt", required: false },
+        { type: "string", name: "caption", label: "Caption", required: false },
+      ],
     },
     {
       type: "string",
