@@ -16,7 +16,7 @@ query minBlogConnectionPublished {
     }
   }
 }
-
+# Queries the entire collection of published and unpublished content
 query minBlogConnectionAll {
   blogConnection {
     totalCount
