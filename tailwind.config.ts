@@ -5,6 +5,7 @@ import hljsDark from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dar
 
 const hljsLightClasses = Object.entries(hljsLight).reduce(
   (acc, [key, value]) => {
+    //@ts-expect-error
     acc[`& .${key}`] = value;
     return acc;
   },
@@ -12,6 +13,7 @@ const hljsLightClasses = Object.entries(hljsLight).reduce(
 );
 
 const hljsDarkClasses = Object.entries(hljsDark).reduce((acc, [key, value]) => {
+  //@ts-expect-error
   acc[`& .${key}`] = value;
   return acc;
 }, {});
