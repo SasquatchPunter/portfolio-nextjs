@@ -114,7 +114,7 @@ const Blog: Collection = {
       type: "string",
       name: "brief",
       label: "Brief",
-      description: "A brief to grab attention and tease the blog post content",
+      description: "A brief intro to grab the reader's attention.",
       ui: {
         component: "textarea",
       },
