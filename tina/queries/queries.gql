@@ -34,3 +34,19 @@ query minBlogConnectionAll {
     }
   }
 }
+# Queries for blog content `filename` and `relativePath`
+query blogConnectionPaths {
+  blogConnection {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            relativePath
+          }
+        }
+      }
+    }
+  }
+}
