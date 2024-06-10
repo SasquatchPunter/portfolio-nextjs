@@ -1,11 +1,11 @@
 import BlogList from "@/components/blog/BlogList";
+import { cleanConnectionEdges } from "@/data/tina/blog";
 import client from "@tina/__generated__/client";
 import type {
   MinBlogConnectionAllQuery,
   MinBlogConnectionPublishedQuery,
 } from "@tina/__generated__/types";
-
-const ENV = process.env.NODE_ENV;
+import { ENV } from "@utils/env";
 
 export async function getStaticProps() {
   const { data } =
