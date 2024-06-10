@@ -1,6 +1,7 @@
 import { defineConfig } from "tinacms";
 
 import Blog from "./collections/blog";
+import HeroImage from "./collections/heroImage";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -29,14 +30,11 @@ export default defineConfig({
       mediaRoot: "media",
       publicFolder: "public",
     },
-    // loadCustomStore: async () => {
-    //   return MediaStore;
-    // },
   },
   search: {
     tina: {
       indexerToken: searchToken,
     },
   },
-  schema: { collections: [Blog] },
+  schema: { collections: [Blog, HeroImage] },
 });

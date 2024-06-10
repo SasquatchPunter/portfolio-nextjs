@@ -105,9 +105,9 @@ const Blog: Collection = {
       label: "Hero Image",
       required: false,
       fields: [
-        { type: "image", name: "image", label: "Image", required: false },
-        { type: "string", name: "alt", label: "Alt", required: false },
-        { type: "string", name: "caption", label: "Caption", required: false },
+        { type: "image", name: "image", label: "Image", required: true },
+        { type: "string", name: "alt", label: "Alt", required: true },
+        { type: "string", name: "caption", label: "Caption", required: true },
       ],
     },
     {
