@@ -8,7 +8,11 @@ export default function Img(props: any) {
   // Using block elements like `<div>` may break this.
   return (
     <span className="max-w-screen max-h-screen relative">
-      <img src={url} className="w-full rounded-xl object-contain" />
+      <img
+        src={url}
+        alt={props.alt}
+        className="w-full rounded-xl object-contain"
+      />
       <label>{props.caption}</label>
     </span>
   );
