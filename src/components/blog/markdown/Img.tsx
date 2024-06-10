@@ -1,10 +1,9 @@
 import isAbsoluteUrl from "is-absolute-url";
-
-const basePath =
-  process.env.NEXT_PUBLIC_BASE_PATH || process.env.NEXT_BASE_PATH;
+import { BASE_PATH } from "@/utils/env";
 
 export default function Img(props: any) {
-  const url = isAbsoluteUrl(props.url) ? props.url : `${basePath}${props.url}`;
+  const url = isAbsoluteUrl(props.url) ? props.url : `${BASE_PATH}${props.url}`;
+  const alt = props.alt;
   // NOTE: Img tags in Markdown are normally nested in `<p>` tags by parsers
   // Using block elements like `<div>` may break this.
   return (
