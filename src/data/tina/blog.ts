@@ -6,6 +6,8 @@ import {
   BlogConnection,
   MinBlogConnectionAllQuery,
   MinBlogConnectionPublishedQuery,
+  BlogConnectionPathsQuery,
+  BlogConnectionQuery,
 } from "@tina/__generated__/types";
 
 // /** Params to control filtering, sorting and pagination for `blogConnection` queries */
@@ -218,7 +220,8 @@ import {
 // }
 
 export type BlogConnectionUnion =
-  | BlogConnection
+  | BlogConnectionQuery["blogConnection"]
+  | BlogConnectionPathsQuery["blogConnection"]
   | MinBlogConnectionAllQuery["blogConnection"]
   | MinBlogConnectionPublishedQuery["blogConnection"];
 
@@ -231,7 +234,9 @@ export function cleanConnectionEdges(edges: BlogConnectionUnion["edges"]) {
     edges
       ?.filter((edge): edge is NonNullable<typeof edge> => edge != null)
       .filter(
-        (edge): edge is typeof edge & { node: NonNullable<typeof edge.node> } =>
+        (
+          edge
+        ): edge is { node: NonNullable<NonNullable<typeof edge>["node"]> } =>
           edge?.node != null
       ) || []
   );
