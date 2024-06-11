@@ -225,19 +225,27 @@ export type BlogConnectionUnion =
   | MinBlogConnectionAllQuery["blogConnection"]
   | MinBlogConnectionPublishedQuery["blogConnection"];
 
-/** Type returned by `cleanConnectionEdges()` */
-export type CleanBlogConnectionEdges = ReturnType<typeof cleanConnectionEdges>;
+type CleanedBlogConnection<Connection extends BlogConnectionUnion> =
+  Connection & {
+    edges: NonNullable<Connection["edges"]> & {
+      [key: number]: NonNullable<NonNullable<Connection["edges"]>[number]> & {
+        node: NonNullable<
+          NonNullable<NonNullable<Connection["edges"]>[number]>["node"]
+        >;
+      };
+    };
+  };
 
-/** Filter out edges that are nullish or that have nullish nodes */
-export function cleanConnectionEdges(edges: BlogConnectionUnion["edges"]) {
-  return (
-    edges
-      ?.filter((edge): edge is NonNullable<typeof edge> => edge != null)
-      .filter(
-        (
-          edge
-        ): edge is { node: NonNullable<NonNullable<typeof edge>["node"]> } =>
-          edge?.node != null
-      ) || []
-  );
+/**
+ * Cleans the connection and narrows several types (for example, makes `edges` non-nullish)
+ */
+export function cleanConnection<Connection extends BlogConnectionUnion>(
+  connection: Connection
+): CleanedBlogConnection<Connection> {
+  connection.edges =
+    connection.edges
+      ?.filter((edge) => edge != null)
+      .filter((edge) => edge?.node != null) || [];
+
+  return connection as CleanedBlogConnection<Connection>;
 }
