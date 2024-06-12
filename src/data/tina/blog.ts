@@ -16,7 +16,7 @@ export type BlogConnectionUnion =
 // NOTE: this uses the BlogConnectionUnion and not the base BlogConnection because
 // it needs to support multiple custom connection queries.
 // The omit-replace intersection pattern helps ensure no unwanted member types slip through
-type CleanBlogConnection<Connection extends BlogConnectionUnion> = Omit<
+export type CleanBlogConnection<Connection extends BlogConnectionUnion> = Omit<
   Connection,
   "edges"
 > & {
