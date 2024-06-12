@@ -32,6 +32,7 @@ const HeroImage: Collection = {
       type: "string",
       name: "title",
       label: "Title",
+      isTitle: true,
       required: true,
     },
     {
@@ -40,6 +41,7 @@ const HeroImage: Collection = {
       label: "Alt",
       required: true,
     },
+    { type: "string", name: "caption", label: "Caption" },
   ],
 };
 

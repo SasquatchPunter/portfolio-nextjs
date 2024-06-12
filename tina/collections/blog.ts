@@ -1,4 +1,4 @@
-import type { Collection } from "tinacms";
+import type { Collection, Form, TinaCMS } from "tinacms";
 import { wrapFieldsWithMeta } from "tinacms";
 import Datetime from "../fields/Datetime";
 
@@ -25,7 +25,15 @@ const Blog: Collection = {
         }`;
       },
     },
-    beforeSubmit: async ({ values, cms, form }) => {
+    beforeSubmit: async ({
+      values,
+      cms,
+      form,
+    }: {
+      values: Record<string, any>;
+      cms: TinaCMS;
+      form: Form;
+    }) => {
       values.createdAt = values.createdAt || new Date(Date.now()).toISOString();
       values.updatedAt = new Date(Date.now()).toISOString();
       return { ...values };
@@ -100,15 +108,11 @@ const Blog: Collection = {
       },
     },
     {
-      type: "object",
+      type: "reference",
       name: "heroImage",
       label: "Hero Image",
-      required: false,
-      fields: [
-        { type: "image", name: "image", label: "Image", required: true },
-        { type: "string", name: "alt", label: "Alt", required: true },
-        { type: "string", name: "caption", label: "Caption", required: true },
-      ],
+      required: true,
+      collections: ["heroImage"],
     },
     {
       type: "string",
@@ -125,6 +129,8 @@ const Blog: Collection = {
       name: "body",
       label: "Body",
       isBody: true,
+      required: true,
+      templates: [],
     },
   ],
 };
