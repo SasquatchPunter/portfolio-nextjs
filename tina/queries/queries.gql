@@ -1,8 +1,6 @@
 # Queries the entire collection of published content
 query minBlogConnectionPublished {
-  blogConnection (
-    filter: {status: {eq: "published"}}
-  ) {
+  blogConnection (filter: {status: {eq: "published"}}) {
     totalCount
     edges {
       node {
@@ -34,8 +32,24 @@ query minBlogConnectionAll {
     }
   }
 }
-# Queries for blog content `filename` and `relativePath`
-query blogConnectionPaths {
+# Queries _sys data `filename` and `relativePath` for published blog content
+query blogConnectionPathsPublished {
+  blogConnection(filter: {status: {eq: "published"}}) {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            relativePath
+          }
+        }
+      }
+    }
+  }
+}
+# Queries _sys data `filename` and `relativePath` for all blog content
+query blogConnectionPathsAll {
   blogConnection {
     totalCount
     edges {
