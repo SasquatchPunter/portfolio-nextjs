@@ -1,83 +1,47 @@
+import type { InferGetStaticPropsType } from "next";
+
 import BlogPost from "@/components/blog/BlogPost";
 import client from "@tina/__generated__/client";
-import { InferGetStaticPropsType } from "next";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { cleanConnection } from "@/data/tina/blog";
 
-export const getStaticPaths = async () => {
-  const entries =
-    (await client.queries.blogConnection()).data.blogConnection.edges || [];
-  const paths = entries
-    .filter((entry) => entry?.node)
-    .map((entry) => ({
-      params: {
-        slug: entry!.node?._sys.filename,
-      },
-    }));
-  return { paths, fallback: false };
-};
+import { ENV } from "@/utils/env";
 
-export const getStaticProps = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
-  let post:
-    | Awaited<Promise<ReturnType<typeof client.queries.blog>>>
-    | undefined;
-  const errors: { message: string }[] = [];
+export async function getStaticPaths() {
+  const edges = cleanConnection(
+    ENV === "production"
+      ? (await client.queries.blogConnectionPathsPublished()).data
+          .blogConnection
+      : (await client.queries.blogConnectionPathsAll()).data.blogConnection
+  ).edges;
 
-  try {
-    const connection = await client.queries.blogConnection();
-    const edges = connection.data.blogConnection.edges || [];
-    const entry = edges.find(
-      (edge) => edge?.node?._sys.filename === params.slug
-    );
-
-    if (!entry?.node) {
-      errors.push({
-        message: `Could not find the blog entry for '${params.slug}'!`,
-      });
-    } else {
-      const blog = await client.queries.blog({
-        relativePath: entry.node._sys.relativePath,
-      });
-      post = {
-        data: blog.data,
-        errors: blog.errors,
-        variables: blog.variables,
-        query: blog.query,
-      };
-    }
-  } catch (err) {
-    if (err instanceof Error) errors.push({ message: err.message });
-    else throw err;
-  }
   return {
-    props: {
-      post,
-      errors,
-    },
+    paths: edges.map((edge) => ({
+      params: { slug: edge.node._sys.filename },
+    })),
+    fallback: false,
   };
-};
+}
+
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const matched = cleanConnection(
+    (await client.queries.blogConnectionPathsAll()).data.blogConnection
+  ).edges.find((edge) => edge.node._sys.filename === params.slug);
+
+  if (matched === undefined) {
+    throw new Error(
+      `"${params.slug}" was not found by the Tina client. It may not currently be indexed.`
+    );
+  }
+
+  const post = await client.queries.blog({
+    relativePath: matched.node._sys.relativePath,
+  });
+
+  return { props: { post } };
+}
 
 export default function BlogPostPage({
   post,
-  errors,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return post === undefined ? (
-    <>
-      <h1 className="text-4xl">Blog Post Page</h1>
-
-      <div className="text-red-400">
-        <p>Errors Found:</p>
-        {errors.map((error) => (
-          <p key={error.message}>{error.message}</p>
-        ))}
-      </div>
-    </>
-  ) : (
-    <>
-      <BlogPost post={post} />
-    </>
-  );
+  return <BlogPost post={post} />;
 }

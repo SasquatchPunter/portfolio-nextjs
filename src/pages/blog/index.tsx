@@ -1,30 +1,28 @@
+import type { InferGetStaticPropsType } from "next";
+
 import BlogList from "@/components/blog/BlogList";
-import { cleanConnectionEdges } from "@/data/tina/blog";
 import client from "@tina/__generated__/client";
-import type {
-  MinBlogConnectionAllQuery,
-  MinBlogConnectionPublishedQuery,
-} from "@tina/__generated__/types";
+import { cleanConnection } from "@/data/tina/blog";
+
 import { ENV } from "@utils/env";
 
 export async function getStaticProps() {
-  const { data } =
+  const data = cleanConnection(
     ENV === "production"
-      ? await client.queries.minBlogConnectionPublished()
-      : await client.queries.minBlogConnectionAll();
+      ? (await client.queries.minBlogConnectionPublished()).data.blogConnection
+      : (await client.queries.minBlogConnectionAll()).data.blogConnection
+  );
+
   return {
     props: {
-      data,
+      posts: data.edges,
     },
   };
 }
 
-interface Props {
-  data: MinBlogConnectionAllQuery | MinBlogConnectionPublishedQuery;
-}
-export default function BlogPage({ data }: Props) {
-  const posts = cleanConnectionEdges(data.blogConnection.edges);
-
+export default function BlogPage({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <h1 className="text-4xl">Blog Page</h1>
