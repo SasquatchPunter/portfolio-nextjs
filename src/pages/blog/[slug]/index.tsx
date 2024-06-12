@@ -24,7 +24,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const matched = cleanConnection(
-    (await client.queries.blogConnectionPathsAll()).data.blogConnection
+    ENV === "production"
+      ? (await client.queries.blogConnectionPathsPublished()).data
+          .blogConnection
+      : (await client.queries.blogConnectionPathsAll()).data.blogConnection
   ).edges.find((edge) => edge.node._sys.filename === params.slug);
 
   if (matched === undefined) {
